@@ -9,6 +9,7 @@ export const SearchPokemon = () => {
   const context = useContext(PokemonContext);
 
   const navigate = useNavigate();
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
     if (context.valueSearch.length === 0) {
@@ -24,7 +25,7 @@ export const SearchPokemon = () => {
   return (
     <>
       <form
-        className="space-x-3 mb-4 flex flex-col space-y-4 items-center justify-center md:flex-row"
+        className="space-x-3 mb-4 flex flex-col space-y-4 items-center justify-center md:flex-row md:space-y-0"
         onSubmit={handleSubmitForm}
       >
         <input
