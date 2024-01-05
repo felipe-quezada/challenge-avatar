@@ -3,7 +3,8 @@ import { fetchPkmChain } from '../services/pokemonServices';
 import { Loading, EvolutionChain } from '../components';
 import { PokemonContext } from '../context/PokemonContext';
 import { useContext, useEffect, useState } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import defaultPkm from '../assets/defaultPkm.png';
 
 const initState = {
   loading: true,
@@ -49,11 +50,12 @@ export const PokemonPage = () => {
       ) : (
         <section className={`flex flex-col items-center p-4 space-y-10 text-`}>
           <div
-            className={`${pkm.pokemonData.types[0].type.name} rounded-full shadow-2xl`}
+            className={`${pkm.pokemonData.types[0].type.name} rounded-full shadow-2xl w-[470px] h-[470px]`}
           >
             <img
               src={
-                pkm.pokemonData.sprites.other['official-artwork'].front_default
+                pkm.pokemonData.sprites.other['official-artwork']
+                  .front_default || defaultPkm
               }
               alt={pkm.pokemonData.name}
             />

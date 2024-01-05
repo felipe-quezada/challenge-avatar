@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import defaultPkm from '../assets/defaultPkm.png';
 
 export const CardPokemon = ({ pkm }) => {
   return (
@@ -8,7 +9,10 @@ export const CardPokemon = ({ pkm }) => {
           <div className="flex items-center">
             <div className="w-full mr-3 inline-flex items-center justify-center rounded-3xl flex-shrink-0 bg-slate-100 shadow-md border-gray-500 border-2">
               <img
-                src={pkm.sprites.other['official-artwork'].front_default}
+                src={
+                  pkm.sprites.other['official-artwork'].front_default ||
+                  defaultPkm
+                }
                 alt={pkm.name}
                 loading="lazy"
               />
