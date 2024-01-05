@@ -1,7 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar, SearchPokemon } from '../components';
+import { useEffect } from 'react';
 
 export const Layout = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <section className="bg-white">
       <header className="container m-auto text-white">
