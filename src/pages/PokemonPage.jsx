@@ -3,7 +3,7 @@ import { fetchPkmChain } from '../services/pokemonServices';
 import { Loading, EvolutionChain } from '../components';
 import { PokemonContext } from '../context/PokemonContext';
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 
 const initState = {
   loading: true,
@@ -40,7 +40,7 @@ export const PokemonPage = () => {
   useEffect(() => {
     getPokemon(id);
     getChainEvolution(id);
-  }, []);
+  }, [id]);
 
   return (
     <main className="text-center">
@@ -92,14 +92,16 @@ export const PokemonPage = () => {
           <div className="border-4 rounded-xl w-1/2 m-auto p-6">
             <h4 className="text-4xl font-bold">Cadena Evolutiva</h4>
             <div className="flex justify-center my-10 gap-4">
-              {pkm.chainEvolution.map((poke, index) => {
+              {pkm.chainEvolution.map((poke) => {
                 return (
-                  <EvolutionChain
-                    type={pkm.pokemonData.types[0].type.name}
-                    url={poke.imageUrl}
-                    name={poke.name}
-                    key={index}
-                  />
+                  <NavLink to={`/pokemon/${poke.id}`} key={poke.id}>
+                    <EvolutionChain
+                      type={pkm.pokemonData.types[0].type.name}
+                      url={poke.imageUrl}
+                      name={poke.name}
+                      pkmId={poke.id}
+                    />
+                  </NavLink>
                 );
               })}
             </div>

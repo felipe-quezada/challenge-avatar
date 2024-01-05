@@ -32,9 +32,9 @@ export const fetchPkmChain = async (id) => {
 
   while (chain) {
     if (chain !== undefined) {
-      const { sprites } = await fetchPkmById(chain.species.name);
+      const { sprites, id } = await fetchPkmById(chain.species.name);
       const imageUrl = sprites.other['official-artwork'].front_default;
-      arrayEvol.push({ name: chain.species.name, imageUrl });
+      arrayEvol.push({ name: chain.species.name, imageUrl, id });
       chain = chain.evolves_to[0];
     } else {
       control = false;
