@@ -1,5 +1,6 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../layouts/Layout';
+import { HomePage, PokemonPage, SearchPage } from '../pages';
 
 export const router = createBrowserRouter([
   {
@@ -8,12 +9,20 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <h1>Main page</h1>,
+        element: <HomePage />,
       },
       {
-        path: 'character',
-        element: <h1>character page</h1>,
+        path: 'pokemon/:id',
+        element: <PokemonPage />,
+      },
+      {
+        path: 'search',
+        element: <SearchPage />,
       },
     ],
-  },
+  } /* 
+  {
+    path: '*',
+    element: <Navigate to={''} />,
+  }, */,
 ]);

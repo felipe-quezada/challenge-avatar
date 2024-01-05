@@ -1,11 +1,19 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { Navbar, SearchPokemon } from '../components';
 
 export const Layout = () => {
   return (
-    <>
-      <h1>nav</h1>
-      <Outlet />
-    </>
+    <section className="bg-white">
+      <header className="container m-auto text-white">
+        <Navbar />
+      </header>
+
+      <main className="container m-auto my-8">
+        <div className="text-center">
+          <SearchPokemon />
+        </div>
+        <Outlet />
+      </main>
+    </section>
   );
 };
