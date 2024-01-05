@@ -18,11 +18,7 @@ export const fetchAllPkm = async (offset, limit = 20) => {
   return pkmData;
 };
 
-const fetchPkmInfoFromUrl = async (url) => {
-  const { data } = await axios.get(url);
-  return data;
-};
-
+// fetch the chain of evolution
 export const fetchPkmChain = async (id) => {
   const { data } = await axios.get(`${pkemonUrl}pokemon-species/${id}`);
   let chain = await fetchPkmEvolChain(data.evolution_chain);
@@ -32,6 +28,7 @@ export const fetchPkmChain = async (id) => {
 
   while (chain) {
     if (chain !== undefined) {
+      // select id, img and name from the fetch and return the object
       const { sprites, id } = await fetchPkmById(chain.species.name);
       const imageUrl = sprites.other['official-artwork'].front_default;
       arrayEvol.push({ name: chain.species.name, imageUrl, id });
@@ -43,17 +40,22 @@ export const fetchPkmChain = async (id) => {
   return arrayEvol;
 };
 
-const fetchPkmEvolChain = async ({ url }) => {
-  const { data } = await axios.get(url);
-  return data.chain;
-};
-
+// fetch a pokemon by id
 export const fetchPkmById = async (id) => {
   const { data } = await axios.get(`${pkemonUrl}pokemon/${id}`);
   return data;
 };
 
-export const fetchTypesPkm = async () => {
-  const { data } = await axios.get(`${pkemonUrl}type`);
+// --- function helper ---
+
+// fetch the raw chain
+const fetchPkmEvolChain = async ({ url }) => {
+  const { data } = await axios.get(url);
+  return data.chain;
+};
+
+// fetch a pokemon from an url
+const fetchPkmInfoFromUrl = async (url) => {
+  const { data } = await axios.get(url);
   return data;
 };

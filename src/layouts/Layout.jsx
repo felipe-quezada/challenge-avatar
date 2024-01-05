@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 export const Layout = () => {
   const { pathname } = useLocation();
 
+  // to scroll back to top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);

@@ -23,7 +23,10 @@ export const SearchPokemon = () => {
 
   return (
     <>
-      <form className="space-x-3 mb-4" onSubmit={handleSubmitForm}>
+      <form
+        className="space-x-3 mb-4 flex flex-col space-y-4 items-center justify-center md:flex-row"
+        onSubmit={handleSubmitForm}
+      >
         <input
           type="text"
           className="border-2 rounded-full px-3 py-2 w-2/3"
@@ -31,21 +34,23 @@ export const SearchPokemon = () => {
           onChange={context.onInputChange}
           value={context.valueSearch}
         />
-        <button
-          type="button"
-          className="bg-gray-100 rounded-full px-5 py-2 space-x-3 hover:bg-gray-300"
-          onClick={context.ShowFilterType}
-        >
-          <FontAwesomeIcon icon={faFilter} />
-          <span>filtrar</span>
-        </button>
-        <button
-          type="submit"
-          className="bg-gray-100 rounded-full px-5 py-2 space-x-3 hover:bg-gray-300"
-        >
-          <span>Buscar</span>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
+        <div>
+          <button
+            type="button"
+            className="bg-gray-100 rounded-full px-5 py-2 space-x-3 hover:bg-gray-300"
+            onClick={context.ShowFilterType}
+          >
+            <FontAwesomeIcon icon={faFilter} />
+            <span>filtrar</span>
+          </button>
+          <button
+            type="submit"
+            className="bg-gray-100 rounded-full px-5 py-2 space-x-3 hover:bg-gray-300"
+          >
+            <span>Buscar</span>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
+        </div>
       </form>
       <div>
         <FilterPokemon />

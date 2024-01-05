@@ -13,6 +13,7 @@ const initState = {
 };
 
 export const PokemonPage = () => {
+  // state local
   const { getPokemonById } = useContext(PokemonContext);
   const [pkm, setPkm] = useState(initState);
   const { id } = useParams();
@@ -50,7 +51,7 @@ export const PokemonPage = () => {
       ) : (
         <section className={`flex flex-col items-center p-4 space-y-10 text-`}>
           <div
-            className={`${pkm.pokemonData.types[0].type.name} rounded-full shadow-2xl w-[470px] h-[470px]`}
+            className={`${pkm.pokemonData.types[0].type.name} rounded-full shadow-2xl md:w-[470px] md:h-[470px]`}
           >
             <img
               src={
@@ -65,7 +66,7 @@ export const PokemonPage = () => {
               {capitalizeText(pkm.pokemonData.name)}
             </h1>
             <div className="h-10"></div>
-            <section className="border-4 rounded-xl border-gray-500 w-1/2 p-6">
+            <section className="border-4 rounded-xl border-gray-500 md:w-1/2 p-6">
               <h4 className="text-4xl font-bold">Datos del Pokemon</h4>
               <br />
               <ul className="text-left">
@@ -91,9 +92,9 @@ export const PokemonPage = () => {
               </ul>
             </section>
           </div>
-          <div className="border-4 rounded-xl w-1/2 m-auto p-6">
+          <div className="md:border-4 md:rounded-xl lg:w-1/2 w-full m-auto p-6">
             <h4 className="text-4xl font-bold">Cadena Evolutiva</h4>
-            <div className="flex justify-center my-10 gap-4">
+            <div className="flex flex-col items-center space-y-4 justify-center my-10 md:gap-4 md:flex-row">
               {pkm.chainEvolution.map((poke) => {
                 return (
                   <NavLink to={`/pokemon/${poke.id}`} key={poke.id}>

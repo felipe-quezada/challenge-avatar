@@ -20,9 +20,9 @@ export const router = createBrowserRouter([
         element: <SearchPage />,
       },
     ],
-  } /* 
+  },
   {
     path: '*',
-    element: <Navigate to={''} />,
-  }, */,
+    element: <Navigate to={'/'} />,
+  },
 ]);

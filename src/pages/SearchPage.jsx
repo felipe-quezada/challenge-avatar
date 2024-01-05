@@ -3,6 +3,7 @@ import { PokemonContext } from '../context/PokemonContext';
 import { useLocation } from 'react-router-dom';
 import { CardPokemon } from '../components';
 
+// take the pokemons filtered and render on screen
 export const SearchPage = () => {
   const location = useLocation();
   const { allPokemonList } = useContext(PokemonContext);

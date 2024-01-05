@@ -4,17 +4,19 @@ import { useForm } from '../hooks/useForms';
 import { useEffect, useState } from 'react';
 import pkmTypes from '../assets/types.json';
 
+// all my states
 const initialState = {
+  active: false,
+  allPokemonList: [],
+  allPokemonLoading: true,
+  filteredPokemons: [],
+  loading: true,
   more: 0,
   offset: 0,
-  pokemonList: [],
-  allPokemonList: [],
-  loading: true,
-  allPokemonLoading: true,
-  active: false,
-  filteredPokemons: [],
   pkmTypes,
+  pokemonList: [],
 };
+
 const initialForm = {
   valueSearch: '',
 };
@@ -23,6 +25,7 @@ export const PokemonProvider = ({ children }) => {
   const [data, setData] = useState(initialState);
   const formPkm = useForm(initialForm);
 
+  // get 20 pokemons and when reactivate this function add new 20 pokemons
   const getAllPkm = async (offset) => {
     const result = await fetchAllPkm(offset);
     setData((data) => {
@@ -36,6 +39,7 @@ export const PokemonProvider = ({ children }) => {
     });
   };
 
+  // get all pokemon and return a list
   const getGlobalPkm = async () => {
     const result = await fetchAllPkm(0, 100000);
     setData((data) => ({
@@ -50,6 +54,7 @@ export const PokemonProvider = ({ children }) => {
     return data;
   };
 
+  // change the offste to add 20 pokemons new
   const loadMorePokemons = () => {
     setData((data) => {
       return {
@@ -69,6 +74,7 @@ export const PokemonProvider = ({ children }) => {
     });
   };
 
+  // filter the pokemons by types and add this pokemon to an array
   const checkboxFilter = (e) => {
     setData((data) => {
       return {
@@ -114,18 +120,16 @@ export const PokemonProvider = ({ children }) => {
     getGlobalPkm();
   }, []);
 
+  const value = {
+    ...data,
+    ...formPkm,
+    getPokemonById,
+    loadMorePokemons,
+    checkboxFilter,
+    ShowFilterType,
+  };
+
   return (
-    <PokemonContext.Provider
-      value={{
-        ...data,
-        ...formPkm,
-        getPokemonById,
-        loadMorePokemons,
-        checkboxFilter,
-        ShowFilterType,
-      }}
-    >
-      {children}
-    </PokemonContext.Provider>
+    <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>
   );
 };
