@@ -10,8 +10,6 @@ export const SearchPage = () => {
     pokemon.name.includes(location.state.toLowerCase())
   );
 
-  console.log(filteredPokemon);
-
   return (
     <>
       <p className="text-center text-3xl font-semibold">
